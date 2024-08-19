@@ -1,11 +1,12 @@
 //import { FaFile } from "react-icons/fa";
-import File from './SVG/File'
+//import File from './SVG/File'
 import RightArrow from './SVG/rightArrow';
 import BottomArrow from './SVG/BottomArrow';
 import { IFile } from '../interfaces';
 import { useState } from 'react';
 import FolderIcon from './SVG/FolderIcon';
 import OpenFolder from './SVG/openFolder';
+import RenderFileIcon from './SVG/RenderFileIcon';
 
 interface IProp {
     fileTree: IFile
@@ -24,10 +25,10 @@ const RecursiveComponent= ({fileTree: {name, children , isFolder}} : IProp) => {
        {
         isFolder? <div className='flex' onClick={toggleFolder}>
           {isOpen? <BottomArrow/> :<RightArrow/>} 
-        <span className="mr-2 text-yellow-500">
+        <span className="mr-2 text-yellow-400">
           {isOpen? <OpenFolder/> :<FolderIcon/>}
           </span>
-        <span>{name}</span></div> : <div><span className="mr-4"><File/></span>
+        <span>{name}</span></div> : <div className='flex space-x-1'><RenderFileIcon  fileName={name}/>
         <span>{name}</span></div>
        }
        
