@@ -21,7 +21,7 @@ const RecursiveComponent= ({fileTree: {name, children , isFolder}} : IProp) => {
     }
     return ( <>
   <div className='mb-2 ml-2'>
-    <div className="flex  text-white items-center mb-1" >
+    <div className="flex  text-white items-center mb-1 cursor-pointer" >
        {
         isFolder? <div className='flex' onClick={toggleFolder}>
           {isOpen? <BottomArrow/> :<RightArrow/>} 
