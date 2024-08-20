@@ -4,8 +4,8 @@ import RightArrow from './SVG/rightArrow';
 import BottomArrow from './SVG/BottomArrow';
 import { IFile } from '../interfaces';
 import { useState } from 'react';
-import FolderIcon from './SVG/FolderIcon';
-import OpenFolder from './SVG/openFolder';
+//import FolderIcon from './SVG/FolderIcon';
+//import OpenFolder from './SVG/openFolder';
 import RenderFileIcon from './SVG/RenderFileIcon';
 
 interface IProp {
@@ -26,7 +26,7 @@ const RecursiveComponent= ({fileTree: {name, children , isFolder}} : IProp) => {
         isFolder? <div className='flex' onClick={toggleFolder}>
           {isOpen? <BottomArrow/> :<RightArrow/>} 
         <span className="mr-2 text-yellow-400">
-          {isOpen? <OpenFolder/> :<FolderIcon/>}
+         <RenderFileIcon fileName={name} isFolder={isFolder} isOpen={isOpen}/>
           </span>
         <span>{name}</span></div> : <div className='flex space-x-1'><RenderFileIcon  fileName={name}/>
         <span>{name}</span></div>
