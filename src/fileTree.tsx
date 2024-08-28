@@ -27,7 +27,8 @@ export  const fileTree : IFile= {
         children: [{
             id: uuidv4(),
             name: 'index.html',
-            isFolder: false
+            isFolder: false,
+            content: "Hi i'm index"
         }]
     },
     {
@@ -41,7 +42,8 @@ export  const fileTree : IFile= {
             children:[{
                 id: uuidv4(),
                 name: 'button.tsx',
-                isFolder: false
+                isFolder: false,
+                content: "HI I'm Button"
             },
         {
             id: uuidv4(),
