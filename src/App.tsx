@@ -17,7 +17,7 @@ const App= () => {
               <div className="my-5 pr-4 w-[14rem]">
                   <RecursiveComponent fileTree={fileTree} />
               </div>  
-              <div className="border-l border-white flex space-x-1">
+              <div className="border-l border-white flex space-x-1 w-full h-screen">
                   <OpenedFilesBar />  
               </div>  
            </div>        

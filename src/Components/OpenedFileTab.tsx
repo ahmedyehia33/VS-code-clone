@@ -26,12 +26,16 @@ const OpenedFileTab= ({file} :IProp) => {
    
   return ( <>
   
-  <div className="flex h-[2.5rem]  w-auto p-2 hover:bg-gray-900 text-white text-md items-center justify-evenly cursor-pointer rounded-md "
-  style={{border: file.id == activeTabID ? "2px solid white" : "none"}}
+  <div className="flex h-[3rem]  w-auto p-2 hover:bg-gray-900 text-white text-sm items-center justify-evenly cursor-pointer  "
+  style={{borderTop: file.id == activeTabID ? "3px solid gray" : "transparent"}}
   onClick={onClick}>
     <span><RenderFileIcon fileName={file.name} /></span>
     <span className="mx-2">{file.name}</span>
-    <span ><CloseIcon /></span>
+    <span 
+    onClick={(e)=> {
+      e.stopPropagation();
+      
+    }}><CloseIcon /></span>
   </div>
 
   

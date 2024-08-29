@@ -32,11 +32,13 @@ const fileTreeSlice = createSlice({
                 state.openedFiles = action.payload
         },
         setClickedFile : (state , action: PayloadAction<IClickedFile>) =>{
-            state.clickedFile.name = action.payload.name;
-            state.clickedFile.content = action.payload.content ;
+            state.clickedFile = action.payload;
+            
         },
         setActiveTabID : (state , action: PayloadAction<string>)=>{
             state.activeTabID = action.payload;
+            
+            
         }
 
     }

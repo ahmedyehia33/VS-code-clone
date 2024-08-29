@@ -9,7 +9,7 @@ import { useState } from 'react';
 import RenderFileIcon from './SVG/RenderFileIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './../App/store';
-import { setActiveTabID, setOpenedFiles } from '../App/features/fileTreeSlice';
+import { setActiveTabID, setClickedFile, setOpenedFiles } from '../App/features/fileTreeSlice';
 import { doesFileExist } from '../utiles/functions';
 //import { store } from './../App/store';
 
@@ -19,7 +19,7 @@ interface IProp {
 
 
 const RecursiveComponent= ({fileTree} : IProp) => {
-  const  {id,name, children , isFolder} = fileTree;
+  const  {id,name, children , isFolder, content} = fileTree;
   const {openedFiles} = useSelector((state: RootState) => state.tree);
   console.log(openedFiles)
   const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +29,15 @@ const RecursiveComponent= ({fileTree} : IProp) => {
       setIsOpen((prv) => !prv)
     }
     const handleOpenedFiles =()=>{
-      const exist = doesFileExist(openedFiles , fileTree.id)
+      const exist = doesFileExist(openedFiles , fileTree.id);
+      dispatch(setActiveTabID(id));
+      dispatch(setClickedFile({name , content}));
       if(exist){
+        
           return
       }
       dispatch(setOpenedFiles([...openedFiles , fileTree]));
-      dispatch(setActiveTabID(id));
+      
     }
     return ( <>
   <div className='mb-2 ml-2'>

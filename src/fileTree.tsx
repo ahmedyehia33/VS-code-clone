@@ -43,7 +43,14 @@ export  const fileTree : IFile= {
                 id: uuidv4(),
                 name: 'button.tsx',
                 isFolder: false,
-                content: "HI I'm Button"
+                content: `children:[{
+            id: uuidv4(),
+            name: 'components',
+            isFolder: true,
+            children:[{
+                id: uuidv4(),
+                name: 'button.tsx',
+                isFolder: false,}`
             },
         {
             id: uuidv4(),
