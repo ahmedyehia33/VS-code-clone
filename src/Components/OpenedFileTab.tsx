@@ -7,6 +7,7 @@ import { setActiveTabID, setClickedFile, setOpenedFiles } from "../App/features/
 import { RootState } from "../App/store";
 
 
+
 interface IProp {
     file: IFile
 }
@@ -14,6 +15,7 @@ interface IProp {
 
 const OpenedFileTab= ({file} :IProp) => {
     const {activeTabID} = useSelector((state: RootState) => state.tree);
+   
     console.log(` active tab is ${activeTabID}`)
     const { openedFiles } = useSelector((state: RootState ) => state.tree);
  
@@ -44,7 +46,8 @@ const OpenedFileTab= ({file} :IProp) => {
   
   <div className="flex h-[3rem]  w-auto p-2 hover:bg-gray-900 text-white text-sm items-center justify-evenly cursor-pointer  "
   style={{borderTop: file.id == activeTabID ? "3px solid gray" : "transparent"}}
-  onClick={onClick}>
+  onClick={onClick}
+  >
     <span><RenderFileIcon fileName={file.name} /></span>
     <span className="mx-2">{file.name}</span>
     <span 
@@ -54,6 +57,9 @@ const OpenedFileTab= ({file} :IProp) => {
 
     }}><CloseIcon /></span>
   </div>
+  
+      
+  
 
   
 
