@@ -18,7 +18,7 @@ const OpenedFilesBar= () => {
            }  
            </div>
 <div className="text-white flex content-start text-lg w-full h-full">
-          {clickedFile.content && <ContnetHighlighter  content={clickedFile.content}/>}
+          { openedFiles && clickedFile.content && <ContnetHighlighter  content={clickedFile.content}/>}
 </div>
 </div>
           </> );
