@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
-import { closeAllTaps } from "../App/features/fileTreeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { closeAllTaps, setActiveTabID, setClickedFile, setOpenedFiles } from "../App/features/fileTreeSlice";
 import { useEffect, useRef } from "react";
+import { RootState } from "../App/store";
 interface IProp {
     setShowMenu: (val : boolean) => void;
     position: {
@@ -11,6 +12,7 @@ interface IProp {
 
 
 const DropMenu= ({position , setShowMenu} : IProp) => {
+    const {openedFiles , dataTabID} = useSelector((state: RootState) => state.tree);
     const menuRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -22,6 +24,23 @@ const DropMenu= ({position , setShowMenu} : IProp) => {
             window.removeEventListener('click' , handleClickOutside);
         }
     }, [setShowMenu])
+
+    //handler
+    const handleRemove = (id: string) => {
+        const filtered = openedFiles.filter((file) => file.id !== id );
+        const lastTab = filtered[filtered.length -1];
+        if (filtered.length === 0 ){
+          dispatch(setActiveTabID(""));
+          dispatch(setOpenedFiles([]));
+        dispatch(setClickedFile({content: "" , name: ""}));
+        }
+        if (lastTab){
+        dispatch(setOpenedFiles(filtered));
+        dispatch(setClickedFile({content: lastTab.content , name: lastTab.name}));
+        dispatch(setActiveTabID(lastTab.id));
+        
+        }
+      }
   return ( <>
         <div 
         ref={menuRef}
@@ -32,6 +51,9 @@ const DropMenu= ({position , setShowMenu} : IProp) => {
          }}
         className="flex flex-col bg-white text-black rounded-lg w-[6rem] h-[5rem] content-center items-center" >
             <ul className="text-black p-2 hover:bg-slate-200 hover:cursor-pointer w-full rounded-lg text-center"
+            onClick={()=>{
+                handleRemove(dataTabID);
+            }}
             >
                 Close
             </ul>

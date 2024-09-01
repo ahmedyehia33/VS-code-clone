@@ -3,7 +3,7 @@ import { IFile } from "../interfaces";
 import { CloseIcon } from "./SVG/CloseIcon";
 import RenderFileIcon from "./SVG/RenderFileIcon";
 
-import { setActiveTabID, setClickedFile, setOpenedFiles } from "../App/features/fileTreeSlice";
+import { setActiveTabID, setClickedFile, setIdToRemove, setOpenedFiles } from "../App/features/fileTreeSlice";
 import { RootState } from "../App/store";
 
 
@@ -46,7 +46,12 @@ const OpenedFileTab= ({file} :IProp) => {
   
   <div className="flex h-[3rem]  w-auto p-2 hover:bg-gray-900 text-white text-sm items-center justify-evenly cursor-pointer  "
   style={{borderTop: file.id == activeTabID ? "3px solid gray" : "transparent"}}
-  onClick={onClick}
+  onClick={onClick} 
+  onContextMenu={(e)=>{
+    e.preventDefault();
+    dispatch(setIdToRemove(file.id));
+    console.log("id to remove " ,file.id);
+  }}
   >
     <span><RenderFileIcon fileName={file.name} /></span>
     <span className="mx-2">{file.name}</span>

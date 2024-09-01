@@ -22,7 +22,7 @@ const OpenedFilesBar= () => {
     >
                  {
             openedFiles && openedFiles.map((file) => (
-              <div onContextMenu={(e)=>{
+              <div key={file.id} onContextMenu={(e)=>{
                 e.preventDefault();
                 if(openedFiles.length == 0){
                   setShowMenu(false);

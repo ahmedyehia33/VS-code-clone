@@ -11,6 +11,7 @@ interface IInitialState {
     openedFiles: IFile[];
     clickedFile:IClickedFile;
     activeTabID: string | null
+    dataTabID: string 
     
 }
 
@@ -21,7 +22,8 @@ const initialState: IInitialState = {
         content: "",
         
     },
-    activeTabID: null
+    activeTabID: null,
+    dataTabID: ""
 }
 
 const fileTreeSlice = createSlice({
@@ -42,9 +44,11 @@ const fileTreeSlice = createSlice({
         },
         closeAllTaps: (state) => {
             state.openedFiles = [];
+        },
+        setIdToRemove: (state , action: PayloadAction<string>)=>{
+            state.dataTabID = action.payload
         }
-
     }
 });
-export const {setOpenedFiles , setClickedFile , setActiveTabID, closeAllTaps} = fileTreeSlice.actions;
+export const {setOpenedFiles , setClickedFile , setActiveTabID, closeAllTaps, setIdToRemove} = fileTreeSlice.actions;
 export default fileTreeSlice.reducer
