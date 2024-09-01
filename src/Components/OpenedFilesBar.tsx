@@ -46,7 +46,7 @@ const OpenedFilesBar= () => {
  <div className="flex justify-center items-center h-full">
  <VsCodeIcon  />
 </div>}
-{showMenu && <DropMenu position={menuPosition}/>}
+{showMenu && <DropMenu position={menuPosition} setShowMenu={setShowMenu}/>}
           </> );
 }
 

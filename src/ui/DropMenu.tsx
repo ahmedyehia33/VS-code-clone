@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { closeAllTaps } from "../App/features/fileTreeSlice";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 interface IProp {
-    setShowMenu: () => void;
+    setShowMenu: (val : boolean) => void;
     position: {
         x: number ,
         y: number 
@@ -12,7 +12,16 @@ interface IProp {
 
 const DropMenu= ({position , setShowMenu} : IProp) => {
     const menuRef = useRef<HTMLDivElement>(null);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        const handleClickOutside =()=>{
+            setShowMenu(false);
+        };
+        window.addEventListener("click" , handleClickOutside);
+        return ()=>{
+            window.removeEventListener('click' , handleClickOutside);
+        }
+    }, [setShowMenu])
   return ( <>
         <div 
         ref={menuRef}
