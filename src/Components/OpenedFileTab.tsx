@@ -16,7 +16,7 @@ interface IProp {
 const OpenedFileTab= ({file} :IProp) => {
     const {activeTabID} = useSelector((state: RootState) => state.tree);
    
-    console.log(` active tab is ${activeTabID}`)
+    
     const { openedFiles } = useSelector((state: RootState ) => state.tree);
  
     const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const OpenedFileTab= ({file} :IProp) => {
       dispatch(setOpenedFiles(filtered));
       dispatch(setClickedFile({content: lastTab.content , name: lastTab.name}));
       dispatch(setActiveTabID(lastTab.id));
-      console.log("laaaa" , activeTabID);
+      
       }
     }
    
@@ -50,7 +50,7 @@ const OpenedFileTab= ({file} :IProp) => {
   onContextMenu={(e)=>{
     e.preventDefault();
     dispatch(setIdToRemove(file.id));
-    console.log("id to remove " ,file.id);
+    
   }}
   >
     <span><RenderFileIcon fileName={file.name} /></span>

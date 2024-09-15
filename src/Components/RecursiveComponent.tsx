@@ -21,7 +21,7 @@ interface IProp {
 const RecursiveComponent= ({fileTree} : IProp) => {
   const  {id,name, children , isFolder, content} = fileTree;
   const {openedFiles} = useSelector((state: RootState) => state.tree);
-  console.log(openedFiles)
+  
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch()
   //**  HANDLERS */
